@@ -49,12 +49,12 @@ The endine runs on localhost (0.0.0.0) on port number 9999.
   Display the <user_id>'s joke rating history.
 
 ## Test Screenshots using Postman
-  ![1](../Tugas4/Img/1.PNG)
+  ![1](../Img/1.PNG)
   <br>
-  ![2](../Tugas4/Img/2.PNG)
+  ![2](../Img/2.PNG)
   <br>
-  ![3](../Tugas4/Img/3.PNG)
+  ![3](../Img/3.PNG)
   <br>
-  ![4](../Tugas4/Img/4.PNG)
+  ![4](../Img/4.PNG)
   <br>
-  ![5](../Tugas4/Img/5.PNG)
+  ![5](../Img/5.PNG)
