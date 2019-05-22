@@ -58,7 +58,7 @@ class RecommendationEngine:
         """
         
         logger.info("Training the ALS model...")
-        self.als = ALS(maxIter=5, regParam=0.01, userCol="userId", itemCol="jokeId", ratingCol="rating",
+        self.als = ALS(maxIter=5, regParam=0.01, userCol="userId", itemCol="movieId", ratingCol="rating",
                   coldStartStrategy="drop")
         if model == 0:
             self.model1 = self.als.fit(self.df0)
