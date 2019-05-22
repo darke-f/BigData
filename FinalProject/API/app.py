@@ -13,39 +13,39 @@ logger = logging.getLogger(__name__)
 from flask import Flask, request
 
 
-@main.route("/<int:user_id>/ratings/top/<int:count>", methods=["GET"])
-def top_ratings(user_id, count):
+@main.route("/<int:model>/<int:user_id>/ratings/top/<int:count>", methods=["GET"])
+def top_ratings(model, user_id, count):
     logger.debug("User %s TOP ratings requested", user_id)
-    top_rated = recommendation_engine.get_top_ratings(user_id, count)
+    top_rated = recommendation_engine.get_top_ratings(model, user_id, count)
     return json.dumps(top_rated)
 
 
-@main.route("/jokes/<int:joke_id>/recommend/<int:count>", methods=["GET"])
-def joke_recommending(joke_id, count):
-    logger.debug("JokeId %s TOP user recommending", joke_id)
-    top_rated = recommendation_engine.get_top_joke_recommend(joke_id, count)
+@main.route("/<int:model>/movies/<int:movie_id>/recommend/<int:count>", methods=["GET"])
+def movie_recommending(model, movie_id, count):
+    logger.debug("MovieId %s TOP user recommending", movie_id)
+    top_rated = recommendation_engine.get_top_movie_recommend(model, movie_id, count)
     return json.dumps(top_rated)
 
 
-@main.route("/<int:user_id>/ratings/<int:joke_id>", methods=["GET"])
-def joke_ratings(user_id, joke_id):
-    logger.debug("User %s rating requested for joke %s", user_id, joke_id)
-    ratings = recommendation_engine.get_ratings_for_joke_ids(user_id, joke_id)
+@main.route("/<int:model>/<int:user_id>/ratings/<int:movie_id>", methods=["GET"])
+def movie_ratings(model, user_id, movie_id):
+    logger.debug("User %s rating requested for movie %s", user_id, movie_id)
+    ratings = recommendation_engine.get_ratings_for_movie_ids(model, user_id, movie_id)
     return json.dumps(ratings)
 
-@main.route("/<int:user_id>/history", methods=["GET"])
-def ratings_history(user_id):
+@main.route("/<int:model>/<int:user_id>/history", methods=["GET"])
+def ratings_history(model, user_id):
     logger.debug("History for user %s is requested", user_id)
-    user_history = recommendation_engine.get_history(user_id)
+    user_history = recommendation_engine.get_history(model, user_id)
     return json.dumps(user_history)
 
-@main.route("/<int:user_id>/giverating", methods=["POST"])
-def add_ratings(user_id):
+@main.route("/<int:model>/<int:user_id>/giverating", methods=["POST"])
+def add_ratings(model, user_id):
     # get the ratings from the Flask POST request object
-    jokeId_fetched = int(request.form.get('jokeId'))
+    movieId_fetched = int(request.form.get('movieId'))
     ratings_fetched = float(request.form.get('ratingGiven'))
     # add them to the model using then engine API
-    new_rating = recommendation_engine.add_ratings(user_id, jokeId_fetched, ratings_fetched)
+    new_rating = recommendation_engine.add_ratings(model, user_id, movieId_fetched, ratings_fetched)
 
     return json.dumps(new_rating)
 

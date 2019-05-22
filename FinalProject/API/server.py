@@ -40,7 +40,7 @@ if __name__ == "__main__":
     spark.sparkContext.addPyFile(apppyloc)
 
     #set dataset location
-    dataset_path = os.path.join(os.path.dirname(os.getcwd()), 'Dataset')
+    dataset_path = os.path.join(os.path.dirname(os.getcwd()), 'Kafka_Data')
     app = create_app(spark, dataset_path)
 
     # start web server
